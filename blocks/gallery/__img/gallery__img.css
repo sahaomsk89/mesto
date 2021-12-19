@@ -1,12 +1,12 @@
-.gallery__caption_img {
+.gallery__img {
     width: 22px;
 }
 
-.gallery__caption_img:hover {
+.gallery__img:hover {
     cursor: pointer;
 }
 
-.gallery__caption_img:active {
+.gallery__img:active {
     width: 22px;
     height: 19px;
     background-image: url(../../../../images/Union.svg);
