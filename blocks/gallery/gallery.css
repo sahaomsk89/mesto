@@ -1,0 +1,8 @@
+.gallery {
+    width: 80%;
+    display: grid;
+    gap: 20px 17px;
+    grid-template: repeat(2, 1fr) / repeat(auto-fit, 282px);
+    justify-content: center;
+    margin: 51px auto 67px auto;
+}
