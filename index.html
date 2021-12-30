@@ -5,101 +5,108 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="pages/index.css">
-  <title>Путешествия по России</title>
+  <title>Места России</title>
 </head>
 
 <body class="root">
   <div class="page">
     <header class="header">
-      <div class="header__logo">
-      </div>
+      <div class="header__logo"></div>
+      <div class="header__line"></div>
     </header>
 
     <main class="content">
 
-      <!--lead -->
       <section class="profile">
         <img class="profile__avatar" src="./images/avatar.png" alt="аватарка">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button">
-            <img src="./images/pencil.svg" alt="карандаш">
+          <button class="profile__edit-button" type="button">
           </button>
-          <p class="profile__sabtitle">Исследователь океана</p>
+          <p class="profile__subtitle">Исследователь океана</p>
         </div>
 
-        <button class="profile__add-button">
-          <img src="./images/plus.svg" alt="плюс">
+        <button class="profile__add-button" type="button" aria-label="добавить место">
         </button>
       </section>
 
-      <section class="popup">
-
-        <div class="popup__container">
-          <img class="popup__close" src="./images/Close-Icon.svg" alt="закрыть">
-          <h2 class="popup__title">Редактировать профиль</h2>
-
-          <form class="popup-form" action="#" method="post">
-            <input class="popup-form__name" type="text" value="Жак-Ив Кусто">
-            <input class="popup-form__job" type="text" value="Исследователь океана">
-            <button class="popup-form__button" type="submit"> Сохранить </button>
-          </form>
-        </div>
-      </section>
-
-      <!--photo-grid -->
       <section class="gallery">
-        <figure class="gallery__figure">
-          <img class="gallery__item" src="./images/Karachayevsk.png" alt="поезд">
-          <figcaption class="gallery__caption">
-            <h2 class="gallery__title">Карачаевск</h2>
-            <img class="gallery__img" src="./images/heart.svg" alt="сердечко">
-          </figcaption>
-        </figure>
-        <figure class="gallery__figure">
-          <img class="gallery__item" src="./images/Elbrus.png" alt="поезд">
-          <figcaption class="gallery__caption">
-            <h2 class="gallery__title">Гора Эльбрус</h2>
-            <img class="gallery__img" src="./images/heart.svg" alt="сердечко">
-          </figcaption>
-        </figure>
-        <figure class="gallery__figure">
-          <img class="gallery__item" src="./images/Dombay.png" alt="поезд">
-          <figcaption class="gallery__caption">
-            <h2 class="gallery__title">Домбай</h2>
-            <img class="gallery__img" src="./images/heart.svg" alt="сердечко">
-          </figcaption>
-        </figure>
-        <figure class="gallery__figure">
-          <img class="gallery__item" src="./images/baikal.jpg" alt="поезд">
-          <figcaption class="gallery__caption">
-            <h2 class="gallery__title">Байкал</h2>
-            <img class="gallery__img" src="./images/heart.svg" alt="сердечко">
-          </figcaption>
-        </figure>
-        <figure class="gallery__figure">
-          <img class="gallery__item" src="./images/kamchatka.jpg" alt="поезд">
-          <figcaption class="gallery__caption">
-            <h2 class="gallery__title">Камчатка</h2>
-            <img class="gallery__img" src="./images/heart.svg" alt="сердечко">
-          </figcaption>
-        </figure>
-        <figure class="gallery__figure">
-          <img class="gallery__item" src="./images/Karachay-Cherkessia.jpg" alt="поезд">
-          <figcaption class="gallery__caption">
-            <h2 class="gallery__title">Карачаево-Черкессия</h2>
-            <img class="gallery__img" src="./images/heart.svg" alt="сердечко">
-          </figcaption>
-
-        </figure>
+        <div class="gallery__figure">
+          <img class="gallery__item" src="./images/Karachayevsk.png" alt="Карачаевск">
+          <ul class="gallery__caption">
+            <li class="gallery__list-item">
+              <h2 class="gallery__title">Карачаевск</h2>
+              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
+            </li>
+          </ul>
+        </div>
+        <div class="gallery__figure">
+          <img class="gallery__item" src="./images/Elbrus.png" alt="Эльбрус">
+          <ul class="gallery__caption">
+            <li class="gallery__list-item">
+              <h2 class="gallery__title">Гора Эльбрус</h2>
+              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
+            </li>
+          </ul>
+        </div>
+        <div class="gallery__figure">
+          <img class="gallery__item" src="./images/Dombay.png" alt="Домбай">
+          <ul class="gallery__caption">
+            <li class="gallery__list-item">
+              <h2 class="gallery__title">Домбай</h2>
+              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
+            </li>
+          </ul>
+        </div>
+        <div class="gallery__figure">
+          <img class="gallery__item" src="./images/baikal.jpg" alt="Байкал">
+          <ul class="gallery__caption">
+            <li class="gallery__list-item">
+              <h2 class="gallery__title">Байкал</h2>
+              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
+            </li>
+          </ul>
+        </div>
+        <div class="gallery__figure">
+          <img class="gallery__item" src="./images/kamchatka.jpg" alt="Камчатка">
+          <ul class="gallery__caption">
+            <li class="gallery__list-item">
+              <h2 class="gallery__title">Камчатка</h2>
+              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
+            </li>
+          </ul>
+        </div>
+        <div class="gallery__figure">
+          <img class="gallery__item" src="./images/Karachay-Cherkessia.jpg" alt="Карачаево-Черкессия">
+          <ul class="gallery__caption">
+            <li class="gallery__list-item">
+              <h2 class="gallery__title">Карачаево-Черкессия</h2>
+              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
+            </li>
+          </ul>
+        </div>
 
       </section>
     </main>
+
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia </p>
     </footer>
+    <div class="popup">
+
+      <div class="popup__container">
+        <img class="popup__close" src="./images/Close-Icon.svg" alt="закрыть">
+        <h2 class="popup__title">Редактировать профиль</h2>
+
+        <form class="popup-form" action="#" method="post">
+          <input class="popup-form__input popup-form__input_name" type="text">
+          <input class="popup-form__input popup-form__input_job" type="text">
+          <button class="popup-form__button" type="submit"> Сохранить </button>
+        </form>
+      </div>
+    </div>
   </div>
-  <script src="./script.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 
 </html>

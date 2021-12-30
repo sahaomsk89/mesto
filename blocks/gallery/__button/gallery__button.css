@@ -1,0 +1,19 @@
+.gallery__button {
+    width: 22px;
+    background-image: url(../../../images/heart.svg);
+    background-repeat: no-repeat;
+    background-position: right;
+    border: none;
+    background-color: #FFFFFF;
+    padding: 19px 19px 5px 30px;
+}
+
+.gallery__button:hover {
+    cursor: pointer;
+}
+
+.gallery__button:active {
+    width: 22px;
+    background-image: url(../../../images/Union.svg);
+    background-repeat: no-repeat;
+}
