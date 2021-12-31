@@ -1,0 +1,7 @@
+/* й, что это для дальнейшей работы*/
+.gallery__button_active {
+    display: none;
+    width: 22px;
+    background-image: url(../../../images/Union.svg);
+    background-repeat: no-repeat;
+}

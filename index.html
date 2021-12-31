@@ -12,7 +12,6 @@
   <div class="page">
     <header class="header">
       <div class="header__logo"></div>
-      <div class="header__line"></div>
     </header>
 
     <main class="content">
@@ -20,70 +19,74 @@
       <section class="profile">
         <img class="profile__avatar" src="./images/avatar.png" alt="аватарка">
         <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button">
+          <div class="profile__text">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <p class="profile__subtitle">Исследователь океана</p>
+          </div>
+
+          <button class="profile__edit-button" type="button" aria-label="редактировать место">
           </button>
-          <p class="profile__subtitle">Исследователь океана</p>
         </div>
 
         <button class="profile__add-button" type="button" aria-label="добавить место">
         </button>
       </section>
 
+
       <section class="gallery">
         <div class="gallery__figure">
           <img class="gallery__item" src="./images/Karachayevsk.png" alt="Карачаевск">
-          <ul class="gallery__caption">
-            <li class="gallery__list-item">
+          <div class="gallery__caption">
+            <div class="gallery__list-item">
               <h2 class="gallery__title">Карачаевск</h2>
               <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
         <div class="gallery__figure">
           <img class="gallery__item" src="./images/Elbrus.png" alt="Эльбрус">
-          <ul class="gallery__caption">
-            <li class="gallery__list-item">
+          <div class="gallery__caption">
+            <div class="gallery__list-item">
               <h2 class="gallery__title">Гора Эльбрус</h2>
               <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
         <div class="gallery__figure">
           <img class="gallery__item" src="./images/Dombay.png" alt="Домбай">
-          <ul class="gallery__caption">
-            <li class="gallery__list-item">
+          <div class="gallery__caption">
+            <div class="gallery__list-item">
               <h2 class="gallery__title">Домбай</h2>
               <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
         <div class="gallery__figure">
           <img class="gallery__item" src="./images/baikal.jpg" alt="Байкал">
-          <ul class="gallery__caption">
-            <li class="gallery__list-item">
+          <div class="gallery__caption">
+            <div class="gallery__list-item">
               <h2 class="gallery__title">Байкал</h2>
               <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
         <div class="gallery__figure">
           <img class="gallery__item" src="./images/kamchatka.jpg" alt="Камчатка">
-          <ul class="gallery__caption">
-            <li class="gallery__list-item">
+          <div class="gallery__caption">
+            <div class="gallery__list-item">
               <h2 class="gallery__title">Камчатка</h2>
               <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
         <div class="gallery__figure">
           <img class="gallery__item" src="./images/Karachay-Cherkessia.jpg" alt="Карачаево-Черкессия">
-          <ul class="gallery__caption">
-            <li class="gallery__list-item">
+          <div class="gallery__caption">
+            <div class="gallery__list-item">
               <h2 class="gallery__title">Карачаево-Черкессия</h2>
               <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
 
       </section>
@@ -95,18 +98,18 @@
     <div class="popup">
 
       <div class="popup__container">
-        <img class="popup__close" src="./images/Close-Icon.svg" alt="закрыть">
+        <button class="popup__close" type="button" aria-label="закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
 
-        <form class="popup-form" action="#" method="post">
-          <input class="popup-form__input popup-form__input_name" type="text">
-          <input class="popup-form__input popup-form__input_job" type="text">
+        <form class="popup-form" name="popup-form" action="#" method="post">
+          <input name="input form" class="popup-form__input popup-form__input_name" type="text">
+          <input name="input form" class="popup-form__input popup-form__input_job" type="text">
           <button class="popup-form__button" type="submit"> Сохранить </button>
         </form>
       </div>
     </div>
   </div>
-  <script src="./js/script.js"></script>
+  <script src="./script/script.js"></script>
 </body>
 
 </html>

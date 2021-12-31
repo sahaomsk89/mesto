@@ -9,11 +9,6 @@
 }
 
 .gallery__button:hover {
-    cursor: pointer;
+    opacity: 0.5;
 }
 
-.gallery__button:active {
-    width: 22px;
-    background-image: url(../../../images/Union.svg);
-    background-repeat: no-repeat;
-}
