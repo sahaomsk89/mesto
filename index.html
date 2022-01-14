@@ -32,83 +32,64 @@
         </button>
       </section>
 
-
       <section class="gallery">
-        <div class="gallery__figure">
-          <img class="gallery__item" src="./images/Karachayevsk.png" alt="Карачаевск">
-          <div class="gallery__caption">
-            <div class="gallery__list-item">
-              <h2 class="gallery__title">Карачаевск</h2>
-              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </div>
-          </div>
-        </div>
-        <div class="gallery__figure">
-          <img class="gallery__item" src="./images/Elbrus.png" alt="Эльбрус">
-          <div class="gallery__caption">
-            <div class="gallery__list-item">
-              <h2 class="gallery__title">Гора Эльбрус</h2>
-              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </div>
-          </div>
-        </div>
-        <div class="gallery__figure">
-          <img class="gallery__item" src="./images/Dombay.png" alt="Домбай">
-          <div class="gallery__caption">
-            <div class="gallery__list-item">
-              <h2 class="gallery__title">Домбай</h2>
-              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </div>
-          </div>
-        </div>
-        <div class="gallery__figure">
-          <img class="gallery__item" src="./images/baikal.jpg" alt="Байкал">
-          <div class="gallery__caption">
-            <div class="gallery__list-item">
-              <h2 class="gallery__title">Байкал</h2>
-              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </div>
-          </div>
-        </div>
-        <div class="gallery__figure">
-          <img class="gallery__item" src="./images/kamchatka.jpg" alt="Камчатка">
-          <div class="gallery__caption">
-            <div class="gallery__list-item">
-              <h2 class="gallery__title">Камчатка</h2>
-              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </div>
-          </div>
-        </div>
-        <div class="gallery__figure">
-          <img class="gallery__item" src="./images/Karachay-Cherkessia.jpg" alt="Карачаево-Черкессия">
-          <div class="gallery__caption">
-            <div class="gallery__list-item">
-              <h2 class="gallery__title">Карачаево-Черкессия</h2>
-              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            </div>
-          </div>
-        </div>
-
       </section>
     </main>
 
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia </p>
     </footer>
-    <div class="popup">
 
+    <div class="popup popup_type_edit">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-
-        <form class="popup-form" name="popup-form" action="#" method="post">
-          <input name="input-name" class="popup-form__input popup-form__input_name" type="text">
-          <input name="input-job" class="popup-form__input popup-form__input_job" type="text">
+        <form class="popup-form" name="profile-form" action="#" method="post">
+          <input name="input-name" class="popup-form__input popup-form__input_name" type="text"
+            placeholder="Жак-Ив Кусто">
+          <input name="input-job" class="popup-form__input popup-form__input_job" type="text"
+            placeholder="Исследователь океана">
           <button class="popup-form__button" type="submit"> Сохранить </button>
         </form>
       </div>
     </div>
+
+    <div class="popup popup_type_add-card">
+      <div class="popup__container">
+        <button class="popup__close" type="button" aria-label="закрыть"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup-form" name="place-form" action="#" method="post">
+          <input name="input-name" class="popup-form__input popup-form__input_card-name" type="text"
+            placeholder="Название">
+          <input name="input-link" class="popup-form__input popup-form__input_card-link" type="text"
+            placeholder="Ссылка на картинку">
+          <button class="popup-form__button" type="submit"> Создать </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_image-container">
+      <div class="popup__container-image">
+        <button class="popup__close" type="button" aria-label="закрыть"></button>
+        <img class="popup__image-link">
+        <h2 class="popup__place-name"></h2>
+      </div>
+    </div>
+
+    <template class="card-template">
+      <div class="gallery__carts">
+        <button class="gallery__delete-button"></button>
+        <button class="gallery__view-button"><img class="gallery__item"></button>
+        <div class="gallery__cart">
+          <div class="gallery__list-item">
+            <h2 class="gallery__title">Карачаевск</h2>
+            <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
+          </div>
+        </div>
+      </div>
+    </template>
   </div>
+
   <script src="./script/script.js"></script>
 </body>
 
