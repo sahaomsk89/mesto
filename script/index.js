@@ -20,7 +20,6 @@ const jobInput = document.querySelector('.popup-form__input_job');
 const profileTitle = profile.querySelector('.profile__title');
 const profileSubtitle = profile.querySelector('.profile__subtitle');
 
-
 formEditProfile.addEventListener('submit', (event) => {
     event.preventDefault()
     profileTitle.textContent = nameInput.value;
