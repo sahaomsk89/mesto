@@ -58,7 +58,7 @@
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="закрыть"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup-form" name="place-form" action="#" method="post">
+        <form class="popup-form" name="placeForm" action="#" method="post">
           <input name="input-name" class="popup-form__input popup-form__input_card-name" type="text"
             placeholder="Название">
           <input name="input-link" class="popup-form__input popup-form__input_card-link" type="text"
@@ -71,16 +71,16 @@
     <div class="popup popup_type_image-container">
       <div class="popup__container-image">
         <button class="popup__close" type="button" aria-label="закрыть"></button>
-        <img class="popup__image-link">
+        <img class="popup__image-link" src="#" alt="картинка">
         <h2 class="popup__place-name"></h2>
       </div>
     </div>
 
     <template class="card-template">
-      <div class="gallery__carts">
+      <div class="gallery__cart">
         <button class="gallery__delete-button"></button>
         <button class="gallery__view-button"><img class="gallery__item"></button>
-        <div class="gallery__cart">
+        <div class="gallery__description">
           <div class="gallery__list-item">
             <h2 class="gallery__title">Карачаевск</h2>
             <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
@@ -89,8 +89,9 @@
       </div>
     </template>
   </div>
+  <script src="./script/cards.js"></script>
+  <script src="./script/index.js"></script>
 
-  <script src="./script/script.js"></script>
 </body>
 
 </html>
