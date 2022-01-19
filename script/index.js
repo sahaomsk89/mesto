@@ -32,7 +32,7 @@ formAddCard.addEventListener('submit', (event) => {
 
     const nameValue = inputName.value;
     const linkValue = inputLink.value;
-    document.placeForm.reset();
+    formAddCard.reset();
     renderCard({
         name: nameValue,
         link: linkValue
@@ -42,10 +42,11 @@ formAddCard.addEventListener('submit', (event) => {
 });
 
 function toogleModal(modal) {
-
+    document.addEventListener('keydown', closePopupByEscKey);
     modal.classList.toggle('popup_opened')
 
 }
+
 profileEditButton.addEventListener('click', () => toogleModal(popupEditProfile))
 popupCloseButton.addEventListener('click', () => toogleModal(popupEditProfile))
 
@@ -53,6 +54,10 @@ placeAddButton.addEventListener('click', () => toogleModal(popupAddCard))
 addPopupCloseButton.addEventListener('click', () => toogleModal(popupAddCard))
 
 cardViewCloseBtn.addEventListener('click', (event) => toogleModal(modalCardView))
+
+popupAddCard.addEventListener('click', closePopupByOverlay);
+popupEditProfile.addEventListener('click', closePopupByOverlay);
+modalCardView.addEventListener('click', closePopupByOverlay);
 
 const cardsList = document.querySelector(".gallery");
 const cardTemplate = document.querySelector('.card-template').content;
@@ -67,7 +72,7 @@ function createCard(cardData) {
     cardTitle.textContent = cardData.name;
     cardImage.src = cardData.link;
 
-    function openPopupImage(modalCardView) {
+    function openPopupImage() {
         addPopupImageName.textContent = cardTitle.textContent;
         addPopupImagelink.src = cardImage.src;
         toogleModal(modalCardView);
@@ -76,7 +81,7 @@ function createCard(cardData) {
     function likeClickHandler() {
         likeButton.classList.toggle('gallery__button_active');
     }
-    //удаление карточек
+
     function deleteHandler(e) {
         e.target.closest('.gallery__cart').remove()
     }
@@ -96,3 +101,16 @@ function renderCard(cardData) {
 
 initialCards.forEach(renderCard);
 
+
+function closePopupByOverlay(event) {
+    if (event.currentTarget === event.target) {
+        toogleModal(event.currentTarget);
+    }
+}
+
+function closePopupByEscKey(event) {
+    if (event.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        toogleModal(openedPopup);
+    }
+}

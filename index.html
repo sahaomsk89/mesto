@@ -45,10 +45,12 @@
         <button class="popup__close" type="button" aria-label="закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup-form" name="profile-form" action="#" method="post">
-          <input name="input-name" class="popup-form__input popup-form__input_name" type="text"
-            placeholder="Жак-Ив Кусто">
-          <input name="input-job" class="popup-form__input popup-form__input_job" type="text"
-            placeholder="Исследователь океана">
+          <input name="input-name" id="input-name" class="popup-form__input popup-form__input_name" type="text"
+            placeholder="Жак-Ив Кусто" minlength="2" maxlength="40" required="" autocomplete="off">
+          <span class="input-name-error popup-form__error"></span>
+          <input name="input-job" id="input-job" class="popup-form__input popup-form__input_job" type="text"
+            placeholder="Исследователь океана" minlength="2" maxlength="200" required="" autocomplete="off">
+          <span class="input-job-error popup-form__error"></span>
           <button class="popup-form__button" type="submit"> Сохранить </button>
         </form>
       </div>
@@ -59,10 +61,12 @@
         <button class="popup__close" type="button" aria-label="закрыть"></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="popup-form" name="placeForm" action="#" method="post">
-          <input name="input-name" class="popup-form__input popup-form__input_card-name" type="text"
-            placeholder="Название">
-          <input name="input-link" class="popup-form__input popup-form__input_card-link" type="text"
-            placeholder="Ссылка на картинку">
+          <input name="input-name" id="card-name" class="popup-form__input popup-form__input_card-name" type="text"
+            placeholder="Название" minlength="2" maxlength="30" required="" autocomplete="off">
+          <span class="card-name-error popup-form__error"></span>
+          <input name="input-link" id="card-link" class="popup-form__input popup-form__input_card-link" type="url"
+            placeholder="Ссылка на картинку" required="" autocomplete="off">
+          <span class="card-link-error popup-form__error"></span>
           <button class="popup-form__button" type="submit"> Создать </button>
         </form>
       </div>
@@ -79,7 +83,7 @@
     <template class="card-template">
       <div class="gallery__cart">
         <button class="gallery__delete-button"></button>
-        <button class="gallery__view-button"><img class="gallery__item"></button>
+        <img class="gallery__view-button gallery__item">
         <div class="gallery__description">
           <div class="gallery__list-item">
             <h2 class="gallery__title">Карачаевск</h2>
@@ -91,7 +95,7 @@
   </div>
   <script src="./script/cards.js"></script>
   <script src="./script/index.js"></script>
-
+  <script src="./script/validate.js"></script>
 </body>
 
 </html>
