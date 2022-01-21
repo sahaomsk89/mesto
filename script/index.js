@@ -4,7 +4,6 @@ const placeAddButton = profile.querySelector('.profile__add-button');
 const popup = document.querySelector('.popup');
 const popupEditProfile = document.querySelector(".popup_type_edit");
 const popupAddCard = document.querySelector('.popup_type_add-card');
-const popupContainer = popup.querySelector('.popup__container');
 const popupCloseButton = popupEditProfile.querySelector('.popup__close');
 const addPopupCloseButton = popupAddCard.querySelector('.popup__close');
 const modalCardView = document.querySelector('.popup_type_image-container');
@@ -13,8 +12,10 @@ const formEditProfile = popupEditProfile.querySelector('.popup-form');
 const addPopupImageName = document.querySelector('.popup__place-name');
 const addPopupImagelink = modalCardView.querySelector('.popup__image-link');
 const formAddCard = popupAddCard.querySelector('.popup-form');
+const addSubmitButton = formAddCard.querySelector('.popup-form__button');
 const inputName = document.querySelector(".popup-form__input_card-name");
 const inputLink = document.querySelector(".popup-form__input_card-link");
+const addInputArray = [inputName, inputLink];
 const nameInput = document.querySelector('.popup-form__input_name');
 const jobInput = document.querySelector('.popup-form__input_job');
 const profileTitle = profile.querySelector('.profile__title');
@@ -24,7 +25,7 @@ formEditProfile.addEventListener('submit', (event) => {
     event.preventDefault()
     profileTitle.textContent = nameInput.value;
     profileSubtitle.textContent = jobInput.value;
-    toogleModal(popupEditProfile);
+    closeModal(popupEditProfile);
 });
 
 formAddCard.addEventListener('submit', (event) => {
@@ -32,28 +33,34 @@ formAddCard.addEventListener('submit', (event) => {
 
     const nameValue = inputName.value;
     const linkValue = inputLink.value;
+
     formAddCard.reset();
     renderCard({
         name: nameValue,
         link: linkValue
     })
+    setSubmitBtnState(addInputArray, addSubmitButton, 'popup-form__button_disabled');
+    closeModal(popupAddCard);
 
-    toogleModal(popupAddCard);
 });
 
-function toogleModal(modal) {
+function openModal(modal) {
+    modal.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupByEscKey);
-    modal.classList.toggle('popup_opened')
-
 }
 
-profileEditButton.addEventListener('click', () => toogleModal(popupEditProfile))
-popupCloseButton.addEventListener('click', () => toogleModal(popupEditProfile))
+function closeModal(modal) {
+    modal.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEscKey);
+}
 
-placeAddButton.addEventListener('click', () => toogleModal(popupAddCard))
-addPopupCloseButton.addEventListener('click', () => toogleModal(popupAddCard))
+profileEditButton.addEventListener('click', () => openModal(popupEditProfile))
+popupCloseButton.addEventListener('click', () => closeModal(popupEditProfile))
 
-cardViewCloseBtn.addEventListener('click', (event) => toogleModal(modalCardView))
+placeAddButton.addEventListener('click', () => openModal(popupAddCard))
+addPopupCloseButton.addEventListener('click', () => closeModal(popupAddCard))
+
+cardViewCloseBtn.addEventListener('click', (event) => closeModal(modalCardView))
 
 popupAddCard.addEventListener('click', closePopupByOverlay);
 popupEditProfile.addEventListener('click', closePopupByOverlay);
@@ -72,10 +79,11 @@ function createCard(cardData) {
     cardTitle.textContent = cardData.name;
     cardImage.src = cardData.link;
 
+
     function openPopupImage() {
         addPopupImageName.textContent = cardTitle.textContent;
         addPopupImagelink.src = cardImage.src;
-        toogleModal(modalCardView);
+        openModal(modalCardView);
     }
 
     function likeClickHandler() {
@@ -89,8 +97,6 @@ function createCard(cardData) {
     deleteButton.addEventListener("click", deleteHandler)
     likeButton.addEventListener("click", likeClickHandler)
     viewCardButton.addEventListener('click', () => openPopupImage(modalCardView))
-
-    cardsList.prepend(cardElement);
     return cardElement;
 }
 
@@ -104,13 +110,13 @@ initialCards.forEach(renderCard);
 
 function closePopupByOverlay(event) {
     if (event.currentTarget === event.target) {
-        toogleModal(event.currentTarget);
+        closeModal(event.currentTarget);
     }
 }
 
 function closePopupByEscKey(event) {
     if (event.key === 'Escape') {
         const openedPopup = document.querySelector('.popup_opened');
-        toogleModal(openedPopup);
+        closeModal(openedPopup);
     }
 }
