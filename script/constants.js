@@ -42,7 +42,7 @@ export const addPopupImagelink = modalCardView.querySelector('.popup__image-link
 const profile = document.querySelector('.profile');
 const profileEditButton = profile.querySelector('.profile__edit-button');
 const placeAddButton = profile.querySelector('.profile__add-button');
-const popup = document.querySelector('.popup');
+const popups = document.querySelectorAll('.popup')
 const popupEditProfile = document.querySelector(".popup_type_edit");
 const popupAddCard = document.querySelector('.popup_type_add-card');
 const popupCloseButton = popupEditProfile.querySelector('.popup__close');
@@ -65,7 +65,7 @@ export {
     profile,
     profileEditButton,
     placeAddButton,
-    popup,
+    popups,
     popupEditProfile,
     formEditProfile,
     popupCloseButton,
@@ -74,6 +74,8 @@ export {
     popupAddCard,
     formAddCard,
     addSubmitButton,
+    inputName,
+    inputLink,
     addInputArray,
     nameInput,
     jobInput,

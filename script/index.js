@@ -1,5 +1,5 @@
 import { FormValidator } from './FormValidator.js'
-import { Card } from './cards.js'
+import { Card } from './card.js'
 
 import { initialCards, enableValidation } from './constants.js'
 import { openModal } from './utils.js'
@@ -7,9 +7,9 @@ import { modalCardView, addPopupImageName, addPopupImagelink } from './constants
 
 import {
     profile,
+    popups,
     profileEditButton,
     placeAddButton,
-    popup,
     popupEditProfile,
     formEditProfile,
     popupCloseButton,
@@ -18,14 +18,14 @@ import {
     popupAddCard,
     formAddCard,
     addSubmitButton,
+    inputName,
+    inputLink,
     addInputArray,
     nameInput,
     jobInput,
     profileTitle,
-    profileSubtitle
+    profileSubtitle,
 } from './constants.js'
-
-
 
 const editFofmValidation = new FormValidator(enableValidation, formEditProfile);
 const addCardFormValidation = new FormValidator(enableValidation, formAddCard);
@@ -52,6 +52,7 @@ formAddCard.addEventListener('submit', (event) => {
         name: nameValue,
         link: linkValue
     })
+    disableButton(formAddCard);
     closeModal(popupAddCard);
 });
 
@@ -60,17 +61,43 @@ function closeModal(modal) {
     document.removeEventListener('keydown', closePopupByEscKey);
 }
 
+function disableButton(form) {
+    const button = form.querySelector(".popup-form__button");
+    button.classList.add("popup-form__button_disabled")
+    button.setAttribute("disabled", '')
+}
+
+
+const handleCardClick = (name, link) => {
+    addPopupImageName.textContent = name
+    addPopupImagelink.src = link
+    addPopupImagelink.alt = name
+    openModal(modalCardView);
+}
+
+
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closeModal(popup)
+        }
+        if (evt.target.classList.contains('popup__close')) {
+            closeModal(popup)
+        }
+    })
+})
+
 profileEditButton.addEventListener('click', () => openModal(popupEditProfile))
-popupCloseButton.addEventListener('click', () => closeModal(popupEditProfile))
+//popupCloseButton.addEventListener('click', () => closeModal(popupEditProfile))
 
 placeAddButton.addEventListener('click', () => openModal(popupAddCard))
-addPopupCloseButton.addEventListener('click', () => closeModal(popupAddCard))
+//addPopupCloseButton.addEventListener('click', () => closeModal(popupAddCard))
 
-cardViewCloseBtn.addEventListener('click', (event) => closeModal(modalCardView))
+//cardViewCloseBtn.addEventListener('click', (event) => closeModal(modalCardView))
 
-popupAddCard.addEventListener('click', closePopupByOverlay);
-popupEditProfile.addEventListener('click', closePopupByOverlay);
-modalCardView.addEventListener('click', closePopupByOverlay);
+//popupAddCard.addEventListener('click', closePopupByOverlay);
+//popupEditProfile.addEventListener('click', closePopupByOverlay);
+//modalCardView.addEventListener('click', closePopupByOverlay);
 
 const cardsList = document.querySelector(".gallery");
 const cardTemplateSelector = '.card-template'
@@ -84,11 +111,12 @@ const renderCard = (data) => {
 
 initialCards.forEach(renderCard);
 
-function closePopupByOverlay(event) {
-    if (event.currentTarget === event.target) {
-        closeModal(event.currentTarget);
-    }
-}
+
+//function closePopupByOverlay(event) {
+//  if (event.currentTarget === event.target) {
+//    closeModal(event.currentTarget);
+//}
+//}
 
 export const closePopupByEscKey = (event) => {
     if (event.key === 'Escape') {

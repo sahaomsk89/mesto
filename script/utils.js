@@ -4,4 +4,3 @@ export const openModal = (modal) => {
     modal.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupByEscKey);
 }
-
