@@ -41,18 +41,19 @@ formEditProfile.addEventListener('submit', (event) => {
     closeModal(popupEditProfile);
 });
 
+function renderCard() {
+    return {
+        name: inputName.value,
+        link: inputLink.value
+    };
+}
 formAddCard.addEventListener('submit', (event) => {
     event.preventDefault()
 
-    const nameValue = inputName.value;
-    const linkValue = inputLink.value;
-
     formAddCard.reset();
-    renderCard({
-        name: nameValue,
-        link: linkValue
-    })
-    disableButton(formAddCard);
+
+    cardsList.prepend(createCard(renderCard()));
+    addCardFormValidation.resetValidation()
     closeModal(popupAddCard);
 });
 
@@ -60,13 +61,6 @@ function closeModal(modal) {
     modal.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEscKey);
 }
-
-function disableButton(form) {
-    const button = form.querySelector(".popup-form__button");
-    button.classList.add("popup-form__button_disabled")
-    button.setAttribute("disabled", '')
-}
-
 
 const handleCardClick = (name, link) => {
     addPopupImageName.textContent = name
@@ -103,13 +97,19 @@ const cardsList = document.querySelector(".gallery");
 const cardTemplateSelector = '.card-template'
 const cardTemplate = document.querySelector('.card-template').content;
 
-const renderCard = (data) => {
+
+
+
+function createCard(data) {
     const card = new Card(data, cardTemplateSelector)
     const cardElement = card.getCardElement()
-    cardsList.prepend(cardElement);
-};
+    return cardElement
+}
 
-initialCards.forEach(renderCard);
+
+initialCards.forEach((data) => {
+    cardsList.prepend(createCard(data))
+});
 
 
 //function closePopupByOverlay(event) {
