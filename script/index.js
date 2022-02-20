@@ -49,10 +49,8 @@ function renderCard() {
 }
 formAddCard.addEventListener('submit', (event) => {
     event.preventDefault()
-
-    formAddCard.reset();
-
     cardsList.prepend(createCard(renderCard()));
+    formAddCard.reset();
     addCardFormValidation.resetValidation()
     closeModal(popupAddCard);
 });
@@ -96,8 +94,6 @@ placeAddButton.addEventListener('click', () => openModal(popupAddCard))
 const cardsList = document.querySelector(".gallery");
 const cardTemplateSelector = '.card-template'
 const cardTemplate = document.querySelector('.card-template').content;
-
-
 
 
 function createCard(data) {
