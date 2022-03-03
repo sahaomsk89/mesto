@@ -45,10 +45,10 @@
         <button class="popup__close" type="button" aria-label="закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup-form" name="profile-form" action="#" method="post">
-          <input name="input-name" id="input-name" class="popup-form__input popup-form__input_name" type="text"
+          <input name="name" id="input-name" class="popup-form__input popup-form__input_name" type="text"
             placeholder="Жак-Ив Кусто" minlength="2" maxlength="40" required="" autocomplete="off">
           <span class="input-name-error popup-form__error"></span>
-          <input name="input-job" id="input-job" class="popup-form__input popup-form__input_job" type="text"
+          <input name="job" id="input-job" class="popup-form__input popup-form__input_job" type="text"
             placeholder="Исследователь океана" minlength="2" maxlength="200" required="" autocomplete="off">
           <span class="input-job-error popup-form__error"></span>
           <button class="popup-form__button" type="submit"> Сохранить </button>
@@ -61,10 +61,10 @@
         <button class="popup__close" type="button" aria-label="закрыть"></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="popup-form" name="placeForm" action="#" method="post">
-          <input name="input-name" id="card-name" class="popup-form__input popup-form__input_card-name" type="text"
+          <input name="name" id="card-name" class="popup-form__input popup-form__input_card-name" type="text"
             placeholder="Название" minlength="2" maxlength="30" required="" autocomplete="off">
           <span class="card-name-error popup-form__error"></span>
-          <input name="input-link" id="card-link" class="popup-form__input popup-form__input_card-link" type="url"
+          <input name="link" id="card-link" class="popup-form__input popup-form__input_card-link" type="url"
             placeholder="Ссылка на картинку" required="" autocomplete="off">
           <span class="card-link-error popup-form__error"></span>
           <button class="popup-form__button popup-form__button_disabled" type="submit"> Создать </button>
@@ -93,7 +93,7 @@
       </div>
     </template>
   </div>
-  <script type="module" src="./script/index.js"></script>
+  <script type="module" src="./pages/index.js"></script>
 
 </body>
 

@@ -61,6 +61,10 @@ const jobInput = document.querySelector('.popup-form__input_job');
 const profileTitle = profile.querySelector('.profile__title');
 const profileSubtitle = profile.querySelector('.profile__subtitle');
 
+const cardsList = document.querySelector(".gallery");
+const cardTemplateSelector = '.card-template'
+const cardListSelector = '.gallery';
+
 export {
     profile,
     profileEditButton,
@@ -81,4 +85,7 @@ export {
     jobInput,
     profileTitle,
     profileSubtitle,
+    cardsList,
+    cardTemplateSelector,
+    cardListSelector
 }

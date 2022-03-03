@@ -1,7 +1,3 @@
-import { openModal } from './utils.js'
-import { modalCardView, addPopupImageName, addPopupImagelink } from './constants.js'
-
-
 export class Card {
     constructor(data, cardTemplateSelector, handleCardClick) {
         this._data = data;
@@ -10,16 +6,6 @@ export class Card {
         this._name = data.name;
         this._handleCardClick = handleCardClick;
     }
-
-    _openPopupImage = () => {
-        addPopupImageName.textContent = this._name
-        addPopupImagelink.src = this._cardImage.src
-        addPopupImagelink.alt = this._name
-        openModal(modalCardView);
-    }
-
-
-
 
     _likeClickHandler = () => {
         this._likeButton.classList.toggle('gallery__button_active');
@@ -33,10 +19,9 @@ export class Card {
         this._deleteButton.addEventListener("click", this._deleteHandler)
         this._likeButton.addEventListener("click", this._likeClickHandler)
         this._viewCardButton.addEventListener('click', this._openPopupImage)
-        /*this._cardImage.addEventListener('click', () => {
-           this._handleCardClick(this._name, this._link)
-       });*/
-
+        this._cardImage.addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link)
+        });
     }
 
     getCardElement = () => {
