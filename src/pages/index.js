@@ -1,5 +1,6 @@
 import { FormValidator } from '../components/FormValidator.js'
-import { Card } from '../components/card.js'
+import { Card } from '../components/Card.js'
+import './index.css'
 
 import { initialCards, enableValidation } from '../utils/constants.js'
 

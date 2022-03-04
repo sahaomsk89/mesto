@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+
+
 module.exports = {
     entry: { main: './src/pages/index.js' },
     output: {
@@ -11,6 +13,7 @@ module.exports = {
         publicPath: ''
     },
     mode: 'development', // добавили режим разработчика
+
     devServer: {
         static: path.resolve(__dirname, 'dist'),
         open: true,
@@ -43,6 +46,7 @@ module.exports = {
 
         ],
     },
+
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html' // путь к файлу index.html
