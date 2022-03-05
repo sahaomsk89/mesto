@@ -4,8 +4,6 @@ import './index.css'
 
 import { initialCards, enableValidation } from '../utils/constants.js'
 
-import { addPopupImageName, addPopupImagelink } from '../utils/constants.js'
-
 import {
     profile,
     popups,
