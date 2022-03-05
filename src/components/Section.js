@@ -12,10 +12,6 @@ export default class Section {
     addInitialItem(element) {
         this._container.prepend(element);
     }
-    /*   addInitialItem(item) {
-         const card = this._renderer(item)
-         this._container.prepend(card);
-     }*/
 
 }
 
