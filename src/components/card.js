@@ -18,7 +18,6 @@ export class Card {
     _setEventListeners() {
         this._deleteButton.addEventListener("click", this._deleteHandler)
         this._likeButton.addEventListener("click", this._likeClickHandler)
-        this._viewCardButton.addEventListener('click', this._openPopupImage)
         this._cardImage.addEventListener('click', () => {
             this._handleCardClick(this._name, this._link)
         });
@@ -32,7 +31,6 @@ export class Card {
         this._cardTitle = this._cardElement.querySelector('.gallery__title');
         this._deleteButton = this._cardElement.querySelector('.gallery__delete-button');
         this._likeButton = this._cardElement.querySelector('.gallery__button')
-        this._viewCardButton = this._cardElement.querySelector('.gallery__view-button');
 
         this._cardTitle.textContent = this._name;
         this._cardImage.src = this._link;

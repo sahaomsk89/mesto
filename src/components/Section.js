@@ -3,7 +3,6 @@ export default class Section {
         this._renderer = renderer;
         this._container = document.querySelector(containerSelector);
         this._initialCards = items
-        this._cardTemplateSelector = 'card-template'
     }
 
     render() {
@@ -13,5 +12,10 @@ export default class Section {
     addInitialItem(element) {
         this._container.prepend(element);
     }
+    /*   addInitialItem(item) {
+         const card = this._renderer(item)
+         this._container.prepend(card);
+     }*/
+
 }
 
