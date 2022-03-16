@@ -63,7 +63,7 @@ const cardList = new Section({
 cardList.render();
 
 function getCard(item) {
-    // тут создаете карточку и возвращаете ее 132331
+    // тут создаете карточку и возвращаете 
     const card = new Card(item, cardTemplateSelector, handleCardClick);
     const cardElement = card.getCardElement();
     return cardElement
