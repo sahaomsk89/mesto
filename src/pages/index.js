@@ -1,8 +1,9 @@
 import { FormValidator } from '../components/FormValidator.js'
 import { Card } from '../components/Card.js'
 import './index.css'
-
 import { initialCards, enableValidation } from '../utils/constants.js'
+import { api } from '../components/Api.js'
+
 
 import {
     profile,
@@ -33,11 +34,29 @@ import Section from '../components/Section.js'
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
+import { data } from 'autoprefixer'
+
+
+api.getProfile()
+    .then(res => {
+        user.setUserInfo(res.name, res.about)
+    })
+
+api.getInitialCards()
+    .then(cardsList => {
+        cardsList.forEach(data => {
+            const cardElement = getCard(data)
+
+            cardList.addInitialItem(cardElement);
+        });
+    })
+
 
 const cardList = new Section({
-    items: initialCards,
-    renderer: (item) => {
-        createCard(item);
+    items: initialCards
+    , renderer: (data) => {
+        const cardElement = getCard(data)
+        cardList.addInitialItem(cardElement);
     },
 }, cardListSelector);
 
@@ -50,10 +69,10 @@ function getCard(item) {
     return cardElement
 }
 
-function createCard(data) {
-    const cardElement = getCard(data)
-    cardList.addInitialItem(cardElement);
-}
+//function createCard(data) {
+//   const cardElement = getCard(data)
+//   cardList.addInitialItem(cardElement);
+//}
 
 //function createCard(data) {
 //   const card = new Card(data, cardTemplateSelector, handleCardClick);
@@ -71,7 +90,11 @@ const user = new UserInfo({ userNameElement: profileTitle, userInfoElement: prof
 const popupTypeEdit = new PopupWithForm({
     popupSelector: '.popup_type_edit',
     handleFormSubmit: (data) => {
-        user.setUserInfo(data);
+        const { name, job } = data
+        api.editProfile(name, name)
+            .then(res => {
+                user.setUserInfo(name, job);
+            })
         popupTypeEdit.close();
     }
 });

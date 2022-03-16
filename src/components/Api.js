@@ -5,18 +5,17 @@ class Api {
     }
 
     getProfile() {
-        console.log('getProfile')
-        return fetch(`${this._baseUrl}users/me`, {
+
+        return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
             .catch(console.log)
-
 
     }
 
     getInitialCards() {
-        return fetch(`${this._baseUrl}/cards `, {
+        return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
@@ -24,22 +23,19 @@ class Api {
 
     }
 
-    editProfile() {
-        return fetch(`${this._baseUrl}users/me`, {
+    editProfile(name, about) {
+        return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name: 'Marie Skłodowska Curie',
-                about: 'Physicist and Chemist'
+                name,
+                about
             })
         })
             .then(res => res.ok ? res.json() : Promise.reject(res.status))
             .catch(console.log)
 
     }
-
-
-
 }
 
 export const api = new Api({
