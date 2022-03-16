@@ -63,7 +63,7 @@ const cardList = new Section({
 cardList.render();
 
 function getCard(item) {
-    // тут создаете карточку и возвращаете ее
+    // тут создаете карточку и возвращаете ее 132331
     const card = new Card(item, cardTemplateSelector, handleCardClick);
     const cardElement = card.getCardElement();
     return cardElement
@@ -79,6 +79,7 @@ function getCard(item) {
 //   const cardElement = card.getCardElement();
 //   cardList.addInitialItem(cardElement);
 //}
+
 
 
 const popupTypeimage = new PopupWithImage('.popup_type_image-container');
