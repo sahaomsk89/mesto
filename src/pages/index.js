@@ -3,8 +3,7 @@ import { Card } from '../components/Card.js'
 import './index.css'
 import { initialCards, enableValidation } from '../utils/constants.js'
 import { api } from '../components/Api.js'
-
-
+import "regenerator-runtime/runtime";
 import {
     profile,
     popups,
@@ -44,18 +43,19 @@ api.getProfile()
 
 api.getInitialCards()
     .then(cardsList => {
+        console.log('cardsList', cardsList)
         cardsList.forEach(data => {
             const cardElement = getCard(data)
 
             cardList.addInitialItem(cardElement);
         });
+
     })
 
 
 const cardList = new Section({
-    items: initialCards
-    , renderer: (data) => {
-        const cardElement = getCard(data)
+    items: [], renderer: (data) => {
+        //const cardElement = getCard(data)
         cardList.addInitialItem(cardElement);
     },
 }, cardListSelector);
@@ -64,7 +64,9 @@ cardList.render();
 
 function getCard(item) {
     // тут создаете карточку и возвращаете 
-    const card = new Card(item, cardTemplateSelector, handleCardClick);
+    const card = new Card(
+        item, cardTemplateSelector, handleCardClick, handleDeliteClick
+    )
     const cardElement = card.getCardElement();
     return cardElement
 }
@@ -79,7 +81,6 @@ function getCard(item) {
 //   const cardElement = card.getCardElement();
 //   cardList.addInitialItem(cardElement);
 //}
-
 
 
 const popupTypeimage = new PopupWithImage('.popup_type_image-container');
@@ -105,8 +106,18 @@ popupTypeEdit.setEventListeners();
 const popupTypeAdd = new PopupWithForm({
     popupSelector: '.popup_type_add-card',
     handleFormSubmit: (data) => {
-        createCard(data);
+        // createCard(data);
+        api.addCard(data.name, data.link, data.likes, data._id)
+            .then(res => {
+                const cardElement = getCard({
+                    name: res.name,
+                    link: res.link,
+                    likes: res.likes,
+                    id: res._id
+                })
+            })
         popupTypeAdd.close();
+
     }
 });
 
@@ -130,9 +141,33 @@ profileEditButton.addEventListener('click', () => {
 const editFofmValidation = new FormValidator(enableValidation, formEditProfile);
 const addCardFormValidation = new FormValidator(enableValidation, formAddCard);
 
+//const confirmPopup = new PopupWithForm('.popup_type_delete-confirm', () => { console.log('delete') });
+
+const confirmPopup = new PopupWithForm({
+    popupSelector: '.popup_type_delete-confirm',
+
+});
+
+function handleDeliteClick(id) {
+    console.log('id', id)
+
+    confirmPopup.open();
+    confirmPopup.changeSubmitHandler(
+        () => {
+            api.deleteCard(id)
+                .then(res => {
+                    console.log('res'.res)
+                })
+            confirmPopup.close();
+
+        })
+
+}
 
 editFofmValidation.enableValidation()
 addCardFormValidation.enableValidation()
+confirmPopup.setEventListeners();
+
 
 function handleCardClick(name, link) {
     popupTypeimage.open(name, link);

@@ -1,11 +1,16 @@
 export class Card {
-    constructor(data, cardTemplateSelector, handleCardClick) {
+    constructor(data, cardTemplateSelector, handleCardClick, handleDeliteClick) {
         this._data = data;
         this._template = document.querySelector(cardTemplateSelector).content.querySelector('.gallery__cart');
         this._link = data.link;
         this._name = data.name;
+        this._likes = data.likes;
+        this._id = data._id;
         this._handleCardClick = handleCardClick;
+        this._handleDeliteClick = handleDeliteClick;
+
     }
+
 
     _likeClickHandler = () => {
         this._likeButton.classList.toggle('gallery__button_active');
@@ -16,12 +21,20 @@ export class Card {
     }
 
     _setEventListeners() {
-        this._deleteButton.addEventListener("click", this._deleteHandler)
-        this._likeButton.addEventListener("click", this._likeClickHandler)
+        this._deleteButton.addEventListener("click", () => this._handleDeliteClick(this._id));
+        this._likeButton.addEventListener("click", () => this._likeClickHandler(this._id));
         this._cardImage.addEventListener('click', () => {
             this._handleCardClick(this._name, this._link)
         });
+
     }
+
+    _setLikes() {
+        const likeCountElement = this._cardElement.querySelector('.card-like-count');
+        likeCountElement.textContent = this._likes.length;
+
+    }
+
 
     getCardElement = () => {
         this._cardElement = this._template.cloneNode(true);
@@ -36,8 +49,11 @@ export class Card {
         this._cardImage.src = this._link;
         this._cardImage.alt = this._name;
 
+        this._setLikes()
         //подписки
         this._setEventListeners()
+
+
 
         return this._cardElement;
     }
