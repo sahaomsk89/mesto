@@ -60,6 +60,13 @@ const nameInput = document.querySelector('.popup-form__input_name');
 const jobInput = document.querySelector('.popup-form__input_job');
 const profileTitle = profile.querySelector('.profile__title');
 const profileSubtitle = profile.querySelector('.profile__subtitle');
+const avatarImg = document.querySelector('.profile__avatar');
+const avatarPopup = document.querySelector('.popup_type_avatar');
+const avatarForm = avatarPopup.querySelector('.popup-form');
+const avatarInput = document.querySelector('.popup-form__input_avatar');
+
+
+
 
 const cardsList = document.querySelector(".gallery");
 const cardTemplateSelector = '.card-template'
@@ -87,5 +94,9 @@ export {
     profileSubtitle,
     cardsList,
     cardTemplateSelector,
-    cardListSelector
+    cardListSelector,
+    avatarImg,
+    avatarPopup,
+    avatarForm,
+    avatarInput
 }

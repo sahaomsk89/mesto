@@ -26,7 +26,11 @@ import {
     profileSubtitle,
     cardsList,
     cardTemplateSelector,
-    cardListSelector
+    cardListSelector,
+    avatarImg,
+    avatarPopup,
+    avatarForm,
+    avatarInput
 } from '../utils/constants.js'
 
 import Section from '../components/Section.js'
@@ -35,18 +39,23 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import { data } from 'autoprefixer'
 
+let userId
 
 api.getProfile()
+
     .then(res => {
+        //console.log(res)
         user.setUserInfo(res.name, res.about)
+        userId = res._id;
+
     })
 
 api.getInitialCards()
     .then(cardsList => {
-        console.log('cardsList', cardsList)
+        // console.log('cardsList', cardsList)
         cardsList.forEach(data => {
-            const cardElement = getCard(data)
-
+            const cardElement = getCard(data, userId)
+            // console.log('cardsList', userId)
             cardList.addInitialItem(cardElement);
         });
 
@@ -55,18 +64,24 @@ api.getInitialCards()
 
 const cardList = new Section({
     items: [], renderer: (data) => {
-        //const cardElement = getCard(data)
+        const cardElement = getCard(data, userId)
         cardList.addInitialItem(cardElement);
     },
 }, cardListSelector);
 
 cardList.render();
 
-function getCard(item) {
+function getCard(item, userId) {
     // тут создаете карточку и возвращаете 
     const card = new Card(
-        item, cardTemplateSelector, handleCardClick, handleDeliteClick
+        item, cardTemplateSelector, handleCardClick, {
+        handlelikeClick: () => handlelikeClick(card, data),
+        handleDeliteClick: () => handleDeliteClick(card),
+    },
+        userId,
+
     )
+
     const cardElement = card.getCardElement();
     return cardElement
 }
@@ -87,15 +102,19 @@ const popupTypeimage = new PopupWithImage('.popup_type_image-container');
 popupTypeimage.setEventListeners();
 
 
-const user = new UserInfo({ userNameElement: profileTitle, userInfoElement: profileSubtitle });
+const user = new UserInfo({ userNameElement: profileTitle, userInfoElement: profileSubtitle, userAvatarElement: avatarImg });
 
 const popupTypeEdit = new PopupWithForm({
     popupSelector: '.popup_type_edit',
     handleFormSubmit: (data) => {
+        popupTypeAvatar.renderLoading(true);
         const { name, job } = data
-        api.editProfile(name, name)
+        api.editProfile(name, job)
             .then(res => {
                 user.setUserInfo(name, job);
+            })
+            .catch((err) => {
+                console.log(`${err}`)
             })
         popupTypeEdit.close();
     }
@@ -105,16 +124,23 @@ popupTypeEdit.setEventListeners();
 
 const popupTypeAdd = new PopupWithForm({
     popupSelector: '.popup_type_add-card',
+
     handleFormSubmit: (data) => {
-        // createCard(data);
-        api.addCard(data.name, data.link, data.likes, data._id)
+        popupTypeAvatar.renderLoading(true);
+        api.addCard(data.name, data.link, data.likes, data._id, data.userId, data.ownerId)
             .then(res => {
+                console.log(res)
                 const cardElement = getCard({
                     name: res.name,
                     link: res.link,
                     likes: res.likes,
-                    id: res._id
+                    id: res._id,
+                    userId: res.userId,
+                    ownerId: res.owner._id
                 })
+                    .catch((err) => {
+                        console.log(`${err}`)
+                    })
             })
         popupTypeAdd.close();
 
@@ -123,16 +149,40 @@ const popupTypeAdd = new PopupWithForm({
 
 popupTypeAdd.setEventListeners();
 
+
+const popupTypeAvatar = new PopupWithForm({
+    popupSelector: '.popup_type_avatar',
+    handleFormSubmit: (data) => {
+        popupTypeAvatar.renderLoading(true);
+        const { avatar } = data
+        api.getAvatar(avatar)
+            .then(res => {
+                user.setUserAvatar(avatar);
+            })
+            .catch((err) => {
+                console.log(`${err}`)
+            })
+        popupTypeAvatar.close();
+    }
+});
+
+popupTypeAvatar.setEventListeners();
+
+
+avatarImg.addEventListener('click', () => {
+    avatarValidation.resetValidation();
+    popupTypeAvatar.open();
+});
+
 placeAddButton.addEventListener('click', () => {
     addCardFormValidation.resetValidation();
     popupTypeAdd.open();
 });
 
 profileEditButton.addEventListener('click', () => {
+
     editFofmValidation.resetValidation();
-
     const userData = user.getUserInfo();
-
     nameInput.value = userData.name;
     jobInput.value = userData.job;
     popupTypeEdit.open();
@@ -140,38 +190,57 @@ profileEditButton.addEventListener('click', () => {
 
 const editFofmValidation = new FormValidator(enableValidation, formEditProfile);
 const addCardFormValidation = new FormValidator(enableValidation, formAddCard);
+const avatarValidation = new FormValidator(enableValidation, avatarForm);
 
-//const confirmPopup = new PopupWithForm('.popup_type_delete-confirm', () => { console.log('delete') });
+const confirmPopup = new PopupWithForm({ popupSelector: '.popup_type_delete-confirm' });
 
-const confirmPopup = new PopupWithForm({
-    popupSelector: '.popup_type_delete-confirm',
+editFofmValidation.enableValidation()
+addCardFormValidation.enableValidation()
+avatarValidation.enableValidation()
 
-});
+confirmPopup.setEventListeners();
 
-function handleDeliteClick(id) {
-    console.log('id', id)
 
+function handleDeliteClick(card) {
+    //console.log(card)
     confirmPopup.open();
     confirmPopup.changeSubmitHandler(
         () => {
-            api.deleteCard(id)
+            api.deleteCard(card._id)
                 .then(res => {
-                    console.log('res'.res)
+                    card.deleteHandler()
+                    confirmPopup.close();
                 })
-            confirmPopup.close();
-
+                .catch((err) => {
+                    console.log(`${err}`)
+                })
         })
 
 }
 
-editFofmValidation.enableValidation()
-addCardFormValidation.enableValidation()
-confirmPopup.setEventListeners();
+function handlelikeClick(card) {
+    if (card.isLiked()) {
+        api.deletelike(card._id)
+            .then(res => {
+                //console.log(res)
+                card.setLikes(res.likes);
+            })
+
+    } else {
+        api.likeCard(card._id)
+            .then(res => {
+                //console.log(res)
+                card.setLikes(res.likes);
+            })
+    }
+
+}
 
 
 function handleCardClick(name, link) {
     popupTypeimage.open(name, link);
 }
+
 
 
 
