@@ -8,7 +8,7 @@ export class Card {
         this._likes = data.likes;
         this._id = data._id;
         this._userId = userId;
-        //console.log(data.owner._id);
+        // console.log(data.owner);
         this._ownerId = data.owner._id;
         this._handleCardClick = handleCardClick;
         //console.log(handleDeliteClick);

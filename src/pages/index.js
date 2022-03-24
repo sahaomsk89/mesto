@@ -147,18 +147,11 @@ const popupTypeAdd = new PopupWithForm({
     handleFormSubmit: (data) => {
         popupTypeAdd.renderLoading(true);
 
-        api.addCard(data.name, data.link, data.likes, data._id, data.userId, data.owner._id)
+        api.addCard(data.name, data.link)
 
             .then(res => {
                 console.log(res)
-                const cardElement = getCard({
-                    name: res.name,
-                    link: res.link,
-                    likes: res.likes,
-                    id: res._id,
-                    userId: res.userId,
-                    ownerId: res.owner._id
-                })
+                const cardElement = getCard(res, userId)
                 cardList.addInitialItem(cardElement)
                 popupTypeAdd.close()
                     .catch(err => console.log(`Ошибка добавление карточки: ${err}`))
