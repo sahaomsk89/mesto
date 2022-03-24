@@ -1,10 +1,10 @@
 export default class UserInfo {
-    constructor({ userNameElement, userInfoElement, userAvatarElement }) {
-        this._userNameElement = userNameElement;
-        this._userInfoElement = userInfoElement;
-        this._userAvatarElement = userAvatarElement;
+    constructor({ userNameSelector, userInfoSelector, userAvatarSelector }) {
+        this._userNameElement = userNameSelector;
+        this._userInfoElement = userInfoSelector;
+        this._userAvatarElement = userAvatarSelector;
     }
-
+    userName
     getUserInfo() {
         return {
             name: this._userNameElement.textContent,

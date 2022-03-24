@@ -17,8 +17,10 @@
     <main class="content">
 
       <section class="profile">
-        <div class="profile__avatar-overlay"></div>
-        <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Жак-Ив Кусто">
+        <div class="profile__avatar-wrap">
+          <div class="profile__avatar-overlay"></div>
+          <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Жак-Ив Кусто">
+        </div>
         <div class="profile__info">
           <div class="profile__text">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -115,8 +117,10 @@
         <div class="gallery__description">
           <div class="gallery__list-item">
             <h2 class="gallery__title">Карачаевск</h2>
-            <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
-            <span class="card-like-count"></span>
+            <div class="photo__likes-block">
+              <button class="gallery__button" type="button" aria-label="поставить лайк"></button>
+              <span class="card-like-count"></span>
+            </div>
           </div>
         </div>
       </div>

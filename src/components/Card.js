@@ -4,10 +4,11 @@ export class Card {
         this._template = document.querySelector(cardTemplateSelector).content.querySelector('.gallery__cart');
         this._link = data.link;
         this._name = data.name;
+        // console.log(data.likes);
         this._likes = data.likes;
         this._id = data._id;
         this._userId = userId;
-        // console.log(data.owner._id);
+        //console.log(data.owner._id);
         this._ownerId = data.owner._id;
         this._handleCardClick = handleCardClick;
         //console.log(handleDeliteClick);
@@ -19,6 +20,7 @@ export class Card {
 
     deleteHandler = () => {
         this._cardElement.remove()
+        //  this._cardElement = null
     }
 
     _setEventListeners() {
@@ -82,5 +84,9 @@ export class Card {
         }
 
         return this._cardElement;
+
+
     }
 }
+
+

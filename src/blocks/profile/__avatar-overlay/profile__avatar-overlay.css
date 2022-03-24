@@ -1,15 +1,14 @@
 .profile__avatar-overlay {
     background-color: transparent;
     box-sizing: border-box;
-    height: 120px;
-    width: 120px;
-    left: 137px;
+    height: 100%;
+    width: 100%;
+    left: 0;
     margin: 0;
     opacity: 0;
     padding: 0;
     position: absolute;
-    top: 160px;
-    z-index: 2;
+    top: 0;
 }
 
 .profile__avatar-overlay:hover {
